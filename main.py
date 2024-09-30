@@ -25,7 +25,7 @@ oil_price = 3.3
 distance = 1
 drive_hourly_cost = wage + oil_price * distance * drive_times
 personal_cost = 3
-bike_per_times = 40
+bike_per_times = 25
 
 # 無D12
 for station in Stations:
