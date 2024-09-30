@@ -7,17 +7,15 @@ class Station:
         self.cur = random.randint(0, self.total)
         self.needed = random.randint(0, self.total)
         self.diff = self.cur - self.needed
+        
 
-Station1 = Station("台大男一舍前", 61)
-Station2 = Station("台大新體育館東南側", 39)
-Station3 = Station("台大總圖書館西南側", 23)
-Station4 = Station("捷運公館站(2號出口)", 77)
+data = [("台大男一舍前", 61), ("台大新體育館東南側", 39), ("台大總圖書館西南側", 23), ("捷運公館站(2號出口)", 77)]
 
 Stations = []
-Stations.append(Station1)
-Stations.append(Station2)
-Stations.append(Station3)
-Stations.append(Station4)
+for i in data:
+   Stations.append(Station(i[0], i[1]))
+
+
 
 wage = 200
 drive_times = 4
