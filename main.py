@@ -7,7 +7,7 @@ class Station:
         self.cur = random.randint(0, self.total)
         self.needed = random.randint(0, self.total)
         self.diff = self.cur - self.needed
-        
+
 
 datas = [("台大男一舍前", 61), ("台大新體育館東南側", 39), ("台大總圖書館西南側", 23), ("捷運公館站(2號出口)", 77)]
 
