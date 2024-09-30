@@ -9,10 +9,10 @@ class Station:
         self.diff = self.cur - self.needed
         
 
-data = [("台大男一舍前", 61), ("台大新體育館東南側", 39), ("台大總圖書館西南側", 23), ("捷運公館站(2號出口)", 77)]
+datas = [("台大男一舍前", 61), ("台大新體育館東南側", 39), ("台大總圖書館西南側", 23), ("捷運公館站(2號出口)", 77)]
 
 Stations = []
-for i in data:
+for i in datas:
    Stations.append(Station(i[0], i[1]))
 
 
