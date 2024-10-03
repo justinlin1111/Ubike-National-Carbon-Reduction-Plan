@@ -16,7 +16,7 @@ Stations = []
 for i in datas:
    Stations.append(Station(i[0], i[1]))
 
-
+#chard
 
 wage = 200  # 司機的時薪
 drive_times = 4 # 一個小時能載的次數
