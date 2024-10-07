@@ -16,7 +16,7 @@ class Station:
     def __str__(self):
         return f"Station {self.name}: Current Bikes: {self.current_bikes}, Required Bikes: {self.required_bikes}, Diff: {self.diff}"
 
-
+print("="*69)
 datas = [("台大男一舍前", 61, random.randint(0, 61), random.randint(0, 61)), 
          ("台大新體育館東南側", 39, random.randint(0, 39), random.randint(0, 39)), 
          ("台大總圖書館西南側", 23, random.randint(0, 23), random.randint(0, 23)), 
@@ -67,5 +67,6 @@ for station in stations:
 redistribute_bikes(stations)
 
 # 印出最終結果(因為類別中有__str__，所以print這個物件會輸出他的訊息)
+print("="*69)
 for station in stations:
     print(station)
