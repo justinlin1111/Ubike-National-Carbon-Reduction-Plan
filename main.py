@@ -32,10 +32,10 @@ for i in datas:
 # distance = 1    # 行駛的距離
 # drive_hourly_cost = wage + oil_price * distance * drive_times   # 請司機的支出
 # personal_cost = 3   # 請一個自願者的支出
-# bike_per_times = 25 # 每次能運送的YouBike
+bike_per_times = 25 # 每次能運送的YouBike
 
 # 重新分配車輛的函數
-def redistribute_bikes(stations):
+def redistribute_bikes(stations) -> int:
     # 選出 diff > 0 跟 diff < 0 的
     surplus_stations = [station for station in stations if station.diff > 0]
     deficit_stations = [station for station in stations if station.diff < 0]
@@ -50,7 +50,7 @@ def redistribute_bikes(stations):
 
             # 因為只需要移動多出來的可調度車輛，但同時可能需要的不一定那麼多，選小的
             transfer_amount = min(surplus_station.diff, -deficit_station.diff)
-
+        
             # 把調度後的結果寫出來
             surplus_station.current_bikes -= transfer_amount
             surplus_station.diff -= transfer_amount
@@ -59,6 +59,60 @@ def redistribute_bikes(stations):
             deficit_station.diff += transfer_amount
             print(f"從{surplus_station.name}調了{transfer_amount}台車到{deficit_station.name}")
 
+surp = [10, 20, 50]
+defi = [-20, -40, -20]
+surp = [20, 10]
+defi = [15, 15]
+defi = [abs(i) for i in defi]
+
+count = 0
+j = 0
+
+def transfer(surp: list, defi: list):
+    
+    surp.sort(reverse=True)
+    defi.sort(reverse=True)
+    print('surp:', surp)
+    print('defi:', defi)
+    print("="*69)
+    temp = 0
+    for i in range(len(surp)):
+        if (temp + surp[i]) >= bike_per_times:
+            surp[i] -= (bike_per_times - temp)
+            temp = bike_per_times
+            break
+        else:
+            temp += surp[i]
+            surp[i] = 0
+
+    for i in range(len(defi)):
+        if (defi[i] < temp):
+            temp -= defi[i]
+            defi[i] = 0
+        else:
+            defi[i] -= temp
+            break
+        
+    while(0 in surp):
+        surp.remove(0)
+    while(0 in defi):
+        defi.remove(0)
+    print('surp:', surp)
+    print('defi:', defi)
+    print("="*69)
+        
+while len(surp)*len(defi) != 0:
+    transfer(surp, defi)
+
+
+
+
+            
+            
+            
+        
+        
+    
 
 # 先看最一開始的狀況
 for station in stations:
@@ -70,3 +124,11 @@ redistribute_bikes(stations)
 print("="*69)
 for station in stations:
     print(station)
+
+
+'''10/7
+    1.sort from big to small
+    2.take bikes from surp until temp = 25
+    3.temp give bikes from temp to defi
+    4.repeat until all become 0
+'''
