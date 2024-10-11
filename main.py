@@ -98,10 +98,11 @@ def transfer(surp: list, defi: list):
             outputLog.append(f'將{temp}台車送達{defi[i][0].name}')
             break
     
-    # 把供需滿足的車站從陣列刪除
+    # 把供需滿足的車站從陣列刪除 pass by shared
     lst_temp = surp.copy()
     surp.clear()
     surp.extend([i for i in lst_temp if i[1] != 0])
+    surp = [i for i in lst_temp if i[1] != 0]
     lst_temp = defi.copy()
     defi.clear()
     defi.extend([i for i in lst_temp if i[1] != 0])
@@ -138,25 +139,16 @@ for i in datas:
 # 車輛調度
 redistribute_bikes(stations)
 
-
-    
-    
 '''
-# 先看最一開始的狀況
-for station in stations:
-    print(station)
+輸出
+調度完的結果
+調度花費
 
-redistribute_bikes(stations)
+系統
+加入人體調度
+意願 100% 費用 5
+def 意願函數(費用 距離)
 
-# 印出最終結果(因為類別中有__str__，所以print這個物件會輸出他的訊息)
-print("="*69)
-for station in stations:
-    print(station)
 
-'''
-'''10/7
-    1.sort from big to small
-    2.take bikes from surp until temp = 25
-    3.temp give bikes from temp to defi
-    4.repeat until all become 0
+
 '''
