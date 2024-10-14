@@ -1,4 +1,5 @@
 import random
+from custom_exceptions import SurplusEmptyError, DeficitEmptyError
 
 class Station:
     # name -> 站點名稱
@@ -21,34 +22,29 @@ def redistribute_bikes(stations):
     surp = [[surp_stations, abs(surp_stations.diff)] for surp_stations in stations if surp_stations.diff > 0]
     defi = [[defi_stations, abs(defi_stations.diff)] for defi_stations in stations if defi_stations.diff < 0]
 
+    try:
+        check_states(surp, defi)
+    except SurplusEmptyError as e:
+        print(f"SurplusEmptyError: {e}")
+        return  # 捕捉到錯誤後停止運行
+    except DeficitEmptyError as e:
+        print(f"DeficitEmptyError: {e}")
+        return  # 捕捉到錯誤後停止運行
+    
     while len(surp)*len(defi) != 0:
+        print("="*34 + "調度一次" + "="*34)
         transfer(surp, defi)
-    
-    
-    '''
-    # 選出 diff > 0 跟 diff < 0 的
-    surplus_stations = [station for station in stations if station.diff > 0]
-    deficit_stations = [station for station in stations if station.diff < 0]
 
-    # 如果還有多出來可以調度的車的話(即diff > 0)
-    for surplus_station in surplus_stations:
-        for deficit_station in deficit_stations:
-            if surplus_station.diff == 0:
-                break
-            if deficit_station.diff == 0:
-                continue
-
-            # 因為只需要移動多出來的可調度車輛，但同時可能需要的不一定那麼多，選小的
-            transfer_amount = min(surplus_station.diff, -deficit_station.diff)
-        
-            # 把調度後的結果寫出來
-            surplus_station.current_bikes -= transfer_amount
-            surplus_station.diff -= transfer_amount
-
-            deficit_station.current_bikes += transfer_amount
-            deficit_station.diff += transfer_amount
-            print(f"從{surplus_station.name}調了{transfer_amount}台車到{deficit_station.name}")
-    '''
+# 在transfer前檢查所有站點
+# 確保是可以調度的情況
+def check_states(surplus_stations:list, deficit_stations:list):
+    # 如果有surplus_stations,deficit_stations是空的情況，拋出exception
+    if not surplus_stations:
+        raise SurplusEmptyError("沒有多餘的車輛可調度")
+    elif not deficit_stations:
+        raise DeficitEmptyError("沒有站點缺車")
+    else:
+        print("檢查結果:有車輛需要調度")
 
 # ex:
 # 
@@ -135,10 +131,10 @@ stations = []
 for i in datas:
    stations.append(Station(i[0], i[1], i[2], i[3]))
 
-wtf = [17, 11, -52, -11]
+wtf = [-10, -10, -10, 10]
 for i in range(len(wtf)):
     stations[i].diff = wtf[i]
-    
+
 # 車輛調度
 redistribute_bikes(stations)
 
