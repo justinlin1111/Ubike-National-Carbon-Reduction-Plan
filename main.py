@@ -24,8 +24,6 @@ def redistribute_bikes(stations):
     while len(surp)*len(defi) != 0:
         transfer(surp, defi)
     
-    print(surp)
-    print(defi)
     
     '''
     # 選出 diff > 0 跟 diff < 0 的
@@ -51,20 +49,22 @@ def redistribute_bikes(stations):
             deficit_station.diff += transfer_amount
             print(f"從{surplus_station.name}調了{transfer_amount}台車到{deficit_station.name}")
     '''
-            
+
+# ex:
+# 
 def transfer(surp: list, defi: list):
     outputLog = []      # 文字輸出初始化
     surp.sort(key = lambda x: x[1], reverse = True)     # 函數先排序，為了優先在同一站載滿車
     defi.sort(key = lambda x: x[1], reverse = True)     #
+    print("="*34 + "以下為初始陣列" + "="*35)
     print('surp:', surp)
     print('defi:', defi)
-    print("="*34 + "以上為初始陣列" + "="*35)
     temp = 0
     
     # surp[]的element是[class Station, abs(Station.diff)]
     for i in range(len(surp)):
         
-        # 檢查缺車的站點總合有沒有達到最大裝載量
+        # 檢查缺車的站點總和有沒有達到最大裝載量
         # 有就正常執行，沒有就把最大裝載量改成缺車車輛總和
         if (sum([diff_abs[1] for diff_abs in defi])) < bike_per_times:
             max_bike_per_times = (sum([diff_abs[1] for diff_abs in defi]))
@@ -107,12 +107,11 @@ def transfer(surp: list, defi: list):
     defi.clear()
     defi.extend([i for i in lst_temp if i[1] != 0])
     
+    print("="*34 + "以下為一次調度Log" + "="*35)
+    print(*outputLog, sep = '\n')
+    print("="*34 + "以下為一次調度輸出" + "="*35)
     print('surp:', surp)
     print('defi:', defi)
-    print("="*34 + "以上為一次調度輸出" + "="*35)
-    print(*outputLog, sep = '\n')
-    print("="*34 + "以上為一次調度Log" + "="*35)
-    
   
 # =================================參數====================================
 # wage = 200  # 司機的時薪
@@ -127,7 +126,6 @@ bike_per_times = 25 # 每次能運送的YouBike
 
 # 前置作業
 # 讀入站點資訊
-print("="*69)
 datas = [("台大男一舍前", 61, random.randint(0, 61), random.randint(0, 61)), 
          ("台大新體育館東南側", 39, random.randint(0, 39), random.randint(0, 39)), 
          ("台大總圖書館西南側", 23, random.randint(0, 23), random.randint(0, 23)), 
