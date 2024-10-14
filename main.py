@@ -75,8 +75,9 @@ def transfer(surp: list, defi: list):
         # 能就直接接收最大裝載量的車，不能就該站的車全接收再往下一站接收
         if (temp + surp[i][1]) >= max_bike_per_times:
             surp[i][1] -= (max_bike_per_times - temp)
+            outputLog.append(f'從{surp[i][0].name}接收{max_bike_per_times - temp}台車')
             temp = max_bike_per_times
-            outputLog.append(f'從{surp[i][0].name}接收{temp}台車')
+            
             break
         else:
             temp += surp[i][1]
@@ -134,6 +135,10 @@ stations = []
 for i in datas:
    stations.append(Station(i[0], i[1], i[2], i[3]))
 
+wtf = [17, 11, -52, -11]
+for i in range(len(wtf)):
+    stations[i].diff = wtf[i]
+    
 # 車輛調度
 redistribute_bikes(stations)
 
