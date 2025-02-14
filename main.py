@@ -54,7 +54,7 @@ def mutate(chromosome, mutation_rate=0.1):
         if random.random() < mutation_rate:
             chromosome[i] += random.randint(-3, 3)  # 隨機調整基因值
     return chromosome
-
+# stations -> 自訂的class所組成的陣列，即[Station1,Station2,...,StationN]
 def genetic_algorithm(stations, pop_size=50, generations=100):
     population = initialize_population(pop_size, len(stations))
     for _ in range(generations):
