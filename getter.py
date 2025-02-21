@@ -19,5 +19,5 @@ for data in datas:
     print("站點更新時間: " + data['mday'])
     print()
 
-# 已經有人在github上面實作出歷史數據(十分鐘抓一次，抓一天的)
+# 已經有人在github上面實作出歷史數據(十分鐘抓一次，抓一天的)(並沒有)
 # https://github.com/tses89214/youbike-historical-data/tree/main/data
