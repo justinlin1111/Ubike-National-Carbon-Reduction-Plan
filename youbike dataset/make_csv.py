@@ -1,5 +1,6 @@
 import json
 import csv
+import data_sorting
 
 def json_to_csv_count(json_file, csv_file):
     # Load the JSON data
@@ -41,4 +42,6 @@ def json_to_csv_count(json_file, csv_file):
 
 # Example usage:
 if __name__ == "__main__":
+    data_sorting.csv_to_json("202312_轉乘YouBike2.0票證刷卡資料.csv", "202312_sorted.json")
     json_to_csv_count("202312_sorted.json", "202312.csv")
+    

@@ -40,7 +40,3 @@ def csv_to_json(csv_file, json_file):
     # Write the output to a JSON file.
     with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
-
-# Example usage:
-if __name__ == "__main__":
-    csv_to_json("202312_轉乘YouBike2.0票證刷卡資料.csv", "202312_sorted.json")
