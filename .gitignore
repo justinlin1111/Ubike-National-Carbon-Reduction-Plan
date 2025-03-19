@@ -1,2 +1,3 @@
-youbike_dataset/raw_data_json/
-
+youbike_dataset/processed_data_return/
+youbike_dataset/processed_data_rent/
+youbike_dataset/net_flow_data/
