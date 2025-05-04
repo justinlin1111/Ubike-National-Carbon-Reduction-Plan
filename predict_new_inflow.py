@@ -3,8 +3,8 @@ def predict_new_inflow(station_name, timestamp_str):
     import pandas as pd
 
     # 載入模型與編碼器
-    model = joblib.load(r'lamodel_information\xgb_model.pkl')
-    le = joblib.load(r'model_information\label_encoder.pkl')
+    model = joblib.load(r'lamodel_information\xgb_model_example.pkl')
+    le = joblib.load(r'lamodel_information\label_encoder_example.pkl')
 
     # 建立 DataFrame
     df = pd.DataFrame({
@@ -26,4 +26,4 @@ def predict_new_inflow(station_name, timestamp_str):
     print(f"{timestamp_str} {station_name} 預測 net inflow：{y_pred[0]:.2f}")
     return y_pred[0]
 
-predict_new_inflow('捷運公館站(3號出口)', '2023-01-01 08:00')
+predict_new_inflow('Station A', '2025-05-04 11:00')
