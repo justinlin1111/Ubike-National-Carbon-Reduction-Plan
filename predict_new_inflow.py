@@ -3,8 +3,8 @@ def predict_new_inflow(station_name, timestamp_str):
     import pandas as pd
 
     # 載入模型與編碼器
-    model = joblib.load(r'lamodel_information\xgb_model_example.pkl')
-    le = joblib.load(r'lamodel_information\label_encoder_example.pkl')
+    model = joblib.load(r'lamodel_information/xgb_model_example.pkl')
+    le = joblib.load(r'lamodel_information/label_encoder_example.pkl')
 
     # 建立 DataFrame
     df = pd.DataFrame({

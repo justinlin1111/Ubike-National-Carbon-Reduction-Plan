@@ -166,19 +166,19 @@ if __name__ == "__main__":
         os.makedirs(r"processed_data_return", exist_ok=True)
         os.makedirs(r"net_flow_data", exist_ok=True)
 
-        csv_to_hourly_return_count(
-            r"raw_data_csv\2023" + str(i).zfill(2) + "_轉乘YouBike2.0票證刷卡資料.csv",
-            r"processed_data_rent\2023" + str(i).zfill(2) + ".csv"
+        csv_to_hourly_rent_count(
+            r"raw_data_csv/2023" + str(i).zfill(2) + "_轉乘YouBike2.0票證刷卡資料.csv",
+            r"processed_data_rent/2023" + str(i).zfill(2) + ".csv"
         )
 
         csv_to_hourly_return_count(
-            r"raw_data_csv\2023" + str(i).zfill(2) + "_轉乘YouBike2.0票證刷卡資料.csv",
-            r"processed_data_return\2023" + str(i).zfill(2) + ".csv"
+            r"raw_data_csv/2023" + str(i).zfill(2) + "_轉乘YouBike2.0票證刷卡資料.csv",
+            r"processed_data_return/2023" + str(i).zfill(2) + ".csv"
         )
 
         csv_to_hourly_net_flow(
-            r"raw_data_csv\2023" + str(i).zfill(2) + "_轉乘YouBike2.0票證刷卡資料.csv",
-            r"net_flow_data\2023" + str(i).zfill(2) + ".csv"
+            r"raw_data_csv/2023" + str(i).zfill(2) + "_轉乘YouBike2.0票證刷卡資料.csv",
+            r"net_flow_data/2023" + str(i).zfill(2) + ".csv"
         )
 
 

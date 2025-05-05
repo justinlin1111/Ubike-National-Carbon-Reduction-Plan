@@ -41,6 +41,6 @@ def merge_original_format(folder_path, output_path):
 
 # 使用方式
 if __name__ == "__main__":
-    folder = r"youbike_dataset\net_flow_data"
-    output_file = r"youbike_dataset\merged_raw_format.csv"
+    folder = r"youbike_dataset/net_flow_data"
+    output_file = r"youbike_dataset/merged_raw_format.csv"
     merge_original_format(folder, output_file)
