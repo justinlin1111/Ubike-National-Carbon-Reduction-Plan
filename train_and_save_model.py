@@ -18,8 +18,8 @@ def train_and_save_model(df_long):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     model = xgb.XGBRegressor(
-        n_estimators=100,
-        max_depth=6,
+        n_estimators=200,
+        max_depth=10,
         learning_rate=0.1,
         subsample=0.8,
         colsample_bytree=0.8,
@@ -39,8 +39,8 @@ def train_and_save_model(df_long):
         os.makedirs(output_dir)
 
     # 儲存模型與編碼器
-    joblib.dump(model, os.path.join(output_dir, 'xgb_model_example.pkl'))
-    joblib.dump(le, os.path.join(output_dir, 'label_encoder_example.pkl'))
+    joblib.dump(model, os.path.join(output_dir, 'xgb_model.pkl'))
+    joblib.dump(le, os.path.join(output_dir, 'label_encoder.pkl'))
 
 # --- 1. 載入必要套件 ---
 import pandas as pd
@@ -48,7 +48,7 @@ import numpy as np
 
 # --- 2. 讀取資料 ---
 # 注意：weekday那列是第二列，所以跳過
-csv_path = r'generated_youbike_2023.csv'  
+csv_path = r'youbike_dataset/merged_raw_format.csv'  
 df = pd.read_csv(csv_path, skiprows=[1])
 df.columns = pd.read_csv(csv_path, nrows=0).columns  # 設定正確欄位名稱
 print("讀取", csv_path)

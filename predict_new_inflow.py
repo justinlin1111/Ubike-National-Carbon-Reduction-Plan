@@ -3,8 +3,8 @@ def predict_new_inflow(station_name, timestamp_str):
     import pandas as pd
 
     # 載入模型與編碼器
-    model = joblib.load(r'lamodel_information/xgb_model_example.pkl')
-    le = joblib.load(r'lamodel_information/label_encoder_example.pkl')
+    model = joblib.load(r'lamodel_information/xgb_model.pkl')
+    le = joblib.load(r'lamodel_information/label_encoder.pkl')
 
     # 建立 DataFrame
     df = pd.DataFrame({
@@ -23,7 +23,17 @@ def predict_new_inflow(station_name, timestamp_str):
     X_new = df[['month', 'day', 'hour', 'weekday', 'is_holiday', 'station_id']]
     y_pred = model.predict(X_new)
 
-    print(f"{timestamp_str} {station_name} 預測 net inflow：{y_pred[0]:.2f}")
+    # 對應禮拜幾的中文字
+    weekday_map = {
+        1: "一", 2: "二", 3: "三", 4: "四", 5: "五", 6: "六", 7: "日"
+    }
+    weekday_cn = weekday_map[df['weekday'].iloc[0]]
+
+    print(f"{timestamp_str}（週{weekday_cn}）{station_name} 預測 net inflow：{y_pred[0]:.2f}")
     return y_pred[0]
 
-predict_new_inflow('Station A', '2025-05-04 11:00')
+for j in range(5,10):
+    for i in range(0,24):
+
+        predict_new_inflow('捷運公館站(3號出口)', f'2023-05-0{str(j)} {str(i).zfill(2)}:00')
+    print("-"*69)
