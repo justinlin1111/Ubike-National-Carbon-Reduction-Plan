@@ -35,5 +35,5 @@ def predict_new_inflow(station_name, timestamp_str):
 for j in range(5,10):
     for i in range(0,24):
 
-        predict_new_inflow('捷運公館站(3號出口)', f'2023-05-0{str(j)} {str(i).zfill(2)}:00')
+        predict_new_inflow('臺大男一舍前', f'2023-05-0{str(j)} {str(i).zfill(2)}:00')
     print("-"*69)

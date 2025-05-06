@@ -48,7 +48,7 @@ import numpy as np
 
 # --- 2. 讀取資料 ---
 # 注意：weekday那列是第二列，所以跳過
-csv_path = r'youbike_dataset/merged_raw_format.csv'  
+csv_path = r'youbike_dataset/merged_raw_format_gongguan.csv'  
 df = pd.read_csv(csv_path, skiprows=[1])
 df.columns = pd.read_csv(csv_path, nrows=0).columns  # 設定正確欄位名稱
 print("讀取", csv_path)

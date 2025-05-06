@@ -1,7 +1,8 @@
 import os
 import pandas as pd
+from categories import gongguan_stations
 
-def merge_original_format(folder_path, output_path):
+def merge_original_format(folder_path, output_path, specified_stations):
     merged_df = None
 
     for filename in sorted(os.listdir(folder_path)):
@@ -16,6 +17,9 @@ def merge_original_format(folder_path, output_path):
 
         # 確保欄位名稱正確
         df.columns = pd.read_csv(file_path, nrows=0).columns
+
+        # ✅ 只保留公館站點的資料
+        df = df[df['station names'].isin(specified_stations)]
 
         if merged_df is None:
             merged_df = df
@@ -34,16 +38,16 @@ def merge_original_format(folder_path, output_path):
     weekday_row = ['weekday'] + ['' for _ in range(merged_df.shape[1] - 1)]
 
     # 插入 weekday_row 作為第一列
-    merged_df.columns = merged_df.columns.astype(str)  # 確保欄位名為字串
+    merged_df.columns = merged_df.columns.astype(str)
     merged_df_final = pd.DataFrame([weekday_row], columns=merged_df.columns)
     merged_df_final = pd.concat([merged_df_final, merged_df], ignore_index=True)
 
     # 儲存結果
     merged_df_final.to_csv(output_path, index=False)
-    print(f"\n✅ 合併完成：{output_path}")
+    print(f"\n✅ 合併完成（僅限公館站點）：{output_path}")
 
 # 使用方式
 if __name__ == "__main__":
     folder = r"youbike_dataset/net_flow_data"
-    output_file = r"youbike_dataset/merged_raw_format.csv"
-    merge_original_format(folder, output_file)
+    output_file = r"youbike_dataset/merged_raw_format_gongguan.csv"
+    merge_original_format(folder, output_file, gongguan_stations)
