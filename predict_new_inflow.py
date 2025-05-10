@@ -1,6 +1,8 @@
 def predict_new_inflow(station_name, timestamp_str):
     import joblib
     import pandas as pd
+    import Station
+    from getter import getter
 
     # 載入模型與編碼器
     model = joblib.load(r'lamodel_information/xgb_model.pkl')
@@ -29,11 +31,22 @@ def predict_new_inflow(station_name, timestamp_str):
     }
     weekday_cn = weekday_map[df['weekday'].iloc[0]]
 
-    print(f"{timestamp_str}（週{weekday_cn}）{station_name} 預測 net inflow：{y_pred[0]:.2f}")
-    return y_pred[0]
+    print(f"{timestamp_str}（週{weekday_cn}）{station_name} 預測 net inflow：{int(y_pred[0])}")
+    # 建立一個Station_list後直接回傳
+    station = getter(station_name, int(y_pred[0]))
+    return station
 
-for j in range(5,10):
-    for i in range(0,24):
+# import pandas as pd
+# df = pd.read_csv(r"youbike_dataset/merged_raw_format_gongguan.csv")
+# station_names = df[df['station names'] != 'weekday']['station names'].dropna().tolist()
+# # print(station_names)
 
-        predict_new_inflow('臺大男一舍前', f'2023-05-0{str(j)} {str(i).zfill(2)}:00')
-    print("-"*69)
+# year = 2025
+# month = 5
+# date = 10
+# hour = 10
+# timestamp = f'{year}-{str(month).zfill(2)}-{str(date).zfill(2)} {str(hour).zfill(2)}:00'
+
+# # print(timestamp)
+# for station in station_names:
+#     predict_new_inflow(station, timestamp)
