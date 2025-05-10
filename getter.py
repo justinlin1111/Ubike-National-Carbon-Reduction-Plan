@@ -17,7 +17,7 @@ def getter(station_name, require_bike) -> Station:
     for data in datas:
         if data['sna'] == ('YouBike2.0_' + station_name):
             print(data['sna'] + 'exist')
-            return Station(station_name, data['total'], data['available_rent_bikes'], require_bike)
+            return Station(station_name, data['total'], data['available_rent_bikes'], data['available_rent_bikes'] - require_bike)
     #     print(data['sna'])
     #     print("可用車輛數:" + str(data['available_rent_bikes']))
     #     print("車柱總數: " + str(data['total']))
