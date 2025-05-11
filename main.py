@@ -25,10 +25,14 @@ if __name__ == "__main__":
     # print(Stations[0].name)
     # 看要怎麼把預測出來的結果放到Station裡面
     solutions = genetic_algorithm(Stations)
+    sln_sum = 0
     for station, allocation in zip(Stations, solutions):
+        sln_sum += allocation
         if allocation < 0:
-            print(f"{station.name}需要移走{allocation}輛車")
+            print(f"{station.name}需要移走{-allocation}輛車")
         elif allocation > 0:
             print(f"{station.name}需要移入{allocation}輛車")
+    
+    print("sln_sum =", sln_sum)
     # 處理多車少車的情況
     # 應該就好了
