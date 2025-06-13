@@ -5,3 +5,4 @@ youbike_dataset/merged_raw_format_gongguan.csv
 generated_youbike_2023.csv
 youbike_dataset/raw_data_csv/
 .ubike
+.venv
