@@ -1,12 +1,12 @@
-from predict_new_inflow import predict_new_inflow
-from genetic_algorithm import genetic_algorithm
+from predict.predict_xgboost import predict_xgboost
+from src.utils.genetic_algorithm import genetic_algorithm
 
 if __name__ == "__main__":
     print("hello world")
     # 先把Station做出來
     print('make Station')
     import pandas as pd
-    df = pd.read_csv(r"youbike_dataset/merged_raw_format_gongguan.csv")
+    df = pd.read_csv(r"data/merged_raw_format_gongguan.csv")
     station_names = df[df['station names'] != 'weekday']['station names'].dropna().tolist()
     # print(station_names)
 
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # print(timestamp)
     Stations = []
     for station in station_names:
-        Stations.append(predict_new_inflow(station, timestamp))
+        Stations.append(predict_xgboost(station, timestamp))
     # print(Stations)
     # print(Stations[0].name)
     # 看要怎麼把預測出來的結果放到Station裡面

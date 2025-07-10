@@ -34,3 +34,27 @@ A:因為只有要讀資料，所以不需要額外使用東西操作，只要讀
 2. 討論某個時刻要怎麼運車輛，取整之後抓數值出來丟GA，可能會有總和不是0的情況發生(可能多車了直接說多車，少車就說要運去哪)
 3. DNN, RNN
 4. 
+
+# 第一步
+將原始資料變成可以預測的格式
+# 第二步
+寫出訓練的通用形式與所有的config
+# 第三步
+寫出預測的通用形式
+# 第四步
+把預測完的結果放到GA得到結果
+
+# 注意
+這個檔案在執行時需要使用以下格式:
+不用.py
+python -m 目錄.想要跑的程式碼(-m是從根目錄去看所有的檔案，所以在寫的時候如果有引用到其他的檔案只要從根目錄去往下找就好)
+ex:
+1. python -m src.1_prepare_data
+2. python -m src.predict.predict_dnn
+
+
+# 新增模型的步驟
+1. 在train資料夾下新增(train_模型.py)，參數要是(df_long, ModelConfig.模型_PARAMS)，同時在config.py新增必要的參數
+2. 在predict資料夾下新增(predict_模型.py)，參數要是(timestamp_str, station_name)
+3. 儲存模型時，需要把他放到model 資料夾中，並且做一個新的資料夾(lamodel_information_模型)，存放模型的檔案
+4. 除了config.py以外，所有的模型名稱都用小寫
