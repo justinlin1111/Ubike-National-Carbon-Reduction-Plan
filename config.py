@@ -32,3 +32,10 @@ class ModelConfig:
         'hidden_units': [256, 256],
         'patience': 8
     }
+
+    GRU_PARAMS = {
+    'units': 64,
+    'epochs': 100,
+    'batch_size': 32,
+    'optimizer': 'adam'
+}

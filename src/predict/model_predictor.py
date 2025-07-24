@@ -1,5 +1,6 @@
 from src.predict.predict_dnn import predict_dnn
 from src.predict.predict_xgboost import predict_xgboost
+from src.predict.predict_gru import predict_gru
 
 def predict_model(model_type: str, timestamp_str: str, station_str) -> list:
     # 基礎的資訊
@@ -17,6 +18,10 @@ def predict_model(model_type: str, timestamp_str: str, station_str) -> list:
         Stations = []
         for station in station_names:
             Stations.append(predict_xgboost(timestamp_str, station))
+    elif model_type == 'gru':
+        Stations = []
+        for station in station_names:
+            Stations.append(predict_gru(timestamp_str, station))
     else:
         raise ValueError(f"❌ 不支援的模型類型：{model_type}")
     

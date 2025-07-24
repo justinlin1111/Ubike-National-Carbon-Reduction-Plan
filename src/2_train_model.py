@@ -26,5 +26,5 @@ df_long['is_holiday'] = df_long['weekday'].isin([6,7]).astype(np.uint8)  # 6=Sat
 median_value = df_long['net_inflow'].median()
 df_long['net_inflow'] = df_long['net_inflow'].fillna(median_value)
 
-train_model('dnn', df_long=df_long)
+train_model('gru', df_long=df_long)
 # 要把第一個參數放到config裡面調整比較好
